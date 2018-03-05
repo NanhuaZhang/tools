@@ -78,7 +78,7 @@ class MyArgParse(object):
     def get_args():
         parser = argparse.ArgumentParser(description="""write cases.
         we can use it like this :
-        python hh.py -n wosai.sqb.biz.merchant_service -f MerchantServiceClient-t finance
+        python write_case.py -n wosai.sqb.biz.merchant_service -f MerchantServiceClient -t finance
         """)
         parser.add_argument('-n', "--name", type=str,
                             help="the name of imported package. eg: wosai.sqb.biz.finance_backend")
@@ -108,6 +108,6 @@ if __name__ == '__main__':
         # import the package we need
         filename = __import__(my_arg_parse.name, fromlist=[my_arg_parse.fromlist])
     except (ImportError,):
-        print("do not meet the requirements for wosai package!")
+        raise ImportError
     test = WriteCase(filename, my_arg_parse.tag)
     test.run()
