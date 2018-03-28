@@ -18,7 +18,8 @@
 #     return x+y
 #
 from celery.utils.log import get_task_logger
-from celery import Celery
+from celery import Celery, Task
+import time
 
 app = Celery('celery_first_try', backend='redis://localhost:6379/0', broker='redis://localhost:6379/0')
 logger = get_task_logger(__name__)
@@ -28,3 +29,16 @@ logger = get_task_logger(__name__)
 def add(self, x, y):
     logger.info(self.request.__dict__)
     return x + y
+
+
+@app.task(bind=True)
+def test_ms(self):
+    for i in range(11):
+        time.sleep(0.1)
+        self.update_state(state='PROGRESS', meta={'p': i*10})
+    return 'finish'
+
+
+# print(test_ms.delay().get())
+
+
