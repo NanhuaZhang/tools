@@ -1,6 +1,6 @@
 def print_matrix(matrix):
     for row in matrix:
-        print ' '.join(str(i) for i in row[::-1])
+        print(' '.join(str(i) for i in row[::-1]))
 
 
 inputs = []
