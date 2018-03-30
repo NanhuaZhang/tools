@@ -5,7 +5,7 @@ def print_matrix(matrix):
 
 inputs = []
 while True:
-    num = raw_input()
+    num = input()
     if num == '':
         break
     inputs.append(list(num.split()))
