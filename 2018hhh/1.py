@@ -1,6 +1,6 @@
 inputs = []
 while True:
-    num = raw_input()
+    num = input()
     if num == '':
         break
     inputs.append(int(num))
