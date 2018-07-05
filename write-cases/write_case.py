@@ -1,4 +1,5 @@
-# author znh2
+# author znh
+# version python3.6
 import re
 import argparse
 
